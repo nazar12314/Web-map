@@ -1,15 +1,20 @@
+#Imports
 import argparse
 import folium
 import re
 from geopy.geocoders import Nominatim
-from datetime import datetime
 from queue import PriorityQueue
 from itertools import count
 from haversine import haversine
 from math import floor
+from typing import Dict
 
 
 def parser():
+    """
+    Parser of console arguments
+    Returns 3 required arguments parsed from a user input into console
+    """
     my_parser = argparse.ArgumentParser(description="Web map")
     my_parser.add_argument("year", type=str)
     my_parser.add_argument("latitude", type=float)
@@ -17,12 +22,19 @@ def parser():
     return my_parser.parse_args()
 
 
-def parse_info(data, year):
+def parse_info(data: str, year: str):
+    """
+    A function to parse info from a given file with films.
+    Returns a dictionary of objects:
+    Object example: {"name": str, "year": str, "places": []}
+
+    (str, str) -> dictionary
+    """
     result = {}
     i = 1
     with open(data, encoding='unicode_escape') as file:
         for line in file.readlines():
-            year_or_publication = re.findall("([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]{4})", line)
+            year_or_publication = re.findall("([0-9]{4})", line)
             if year_or_publication == [year]:
                 line = line.replace("\n", "").replace("\t", "")
                 items = line.split(",")
@@ -40,7 +52,10 @@ def parse_info(data, year):
     return result
 
 
-def coordinates_maker(data):
+def coordinates_maker(data: Dict):
+    """
+    This function converts places where films were made into coordinates via geopy module
+    """
     cache = {}
     geolocator = Nominatim(user_agent="my_user_agent")
     for data_object in data:
@@ -63,12 +78,20 @@ def coordinates_maker(data):
             except AttributeError:
                 pass
         else:
-            element1 = cache[element]
+            element1 = cache.get(element)
             if element1 is not None:
                 data[data_object]["places"] = (element1.latitude, element1.longitude)
 
 
-def calculate_distances(data, args):
+def calculate_distances(data: Dict, args):
+    """
+    This function uses haversine formula to calculate distance between the given coordinates
+     and coordinates of given places where films were made
+
+    It uses PriorityQueue to sort places in rising order and optimize extracting info
+
+    (Dict, List) -> PriorityQueue object
+    """
     result = PriorityQueue()
     unique = count()
     for item_object in data:
@@ -80,7 +103,13 @@ def calculate_distances(data, args):
     return result
 
 
-def take_ten_nearest_places(data):
+def take_ten_nearest_places(data: PriorityQueue):
+    """
+    This function takes a formed PriorityQueue of objects and returns 10 first elements
+    (closest to the given coordinates)
+
+    (PriorityQueue) -> List
+    """
     items = []
     response = []
     while len(response) < 10:
@@ -95,6 +124,10 @@ def take_ten_nearest_places(data):
 
 
 def map_creator(args, data_for_markers):
+    """
+    This function creates a web-map from the given data via the folium module
+    Returns generated HTML file named "map.html"
+    """
     map_object = folium.Map(location=[args.latitude, args.longitude], zoom_start=6)
     feature_group = folium.FeatureGroup("Lines")
     feature_group1 = folium.FeatureGroup("Area")
@@ -121,6 +154,9 @@ def map_creator(args, data_for_markers):
 
 
 def main():
+    """
+    Executes all functions
+    """
     args = parser()
     data = parse_info("locations.list", args.year)
     coordinates_maker(data)
@@ -130,7 +166,4 @@ def main():
 
 
 if __name__ == '__main__':
-    start_time = datetime.now()
     main()
-    end_time = datetime.now()
-    print(end_time - start_time)
