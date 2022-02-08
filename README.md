@@ -19,7 +19,7 @@ To install haversine
 pip install haversine
 ```
 
-Or use this command to enable virtual environment
+## Or use this command to enable virtual environment
 ```bash
 pipenv shell
 ```
