@@ -44,3 +44,7 @@ Map has 4 layers:
 
 # Information about project
 As we can see, this web-map shows us ten the nearest places where films of the given year were filmed. Every marker has a short description (you can see it after clicking on it) about each movie (name of the film and year). Also, there are some additional layers that you can toggle by the button above. These allow you to see the distance between the given place and the place of filming and the area of filming.
+
+## Script complexity
+
+Because the list of data is extensive and every request given to geopy takes about 1 second to process, I shorten the scope of data to 500 films of the given year. After these manipulations, the time of execution takes approximately 2 minutes
