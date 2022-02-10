@@ -47,4 +47,4 @@ As we can see, this web-map shows us ten the nearest places where films of the g
 
 ## Script complexity
 
-Because the list of data is extensive and every request given to geopy takes about 1 second to process, I shorten the scope of data to 500 films of the given year. After these manipulations, the time of execution takes approximately 2 minutes
+Because the list of data is extensive and every request given to geopy takes about 1 second to process, I shorten the scope of data to 350 films of the given year. After these manipulations, the time of execution takes approximately 2 minutes
