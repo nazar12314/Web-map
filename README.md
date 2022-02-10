@@ -30,10 +30,10 @@ python main.py "year" "latitude" "longitude"
 ```
 
 ## Example of generated map
-<img width="1440" alt="Знімок екрана 2022-02-09 о 10 28 51" src="https://user-images.githubusercontent.com/59284695/153401664-c85ed36c-c1d6-4f96-82c2-d5ec9037d72f.png">
+<img width="1440" alt="Знімок екрана 2022-02-10 о 13 43 20" src="https://user-images.githubusercontent.com/59284695/153402355-a1bb6a90-78b8-4026-8648-caf19afc81b6.png">
 
 Map has 4 layers:
 * Map
 * Markers
-* Area of filming
-* distance
+* Area of filming (optional)
+* distance (optional)
