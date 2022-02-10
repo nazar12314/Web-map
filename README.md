@@ -1,5 +1,6 @@
 # Web-map project 
-Web map is an application made with Python library "Folium" which is based on JS "LeafLet" library
+The web map is an application made with Python library "Folium" based on JS "LeafLet" library.
+Its purpose is to generate a web map with markers of given coordinates. It is a powerful tool that can be used in different ways, especially when creating statistical models of information about different countries and comparing them.  
 
 To use this module, firstly you have to install all dependencies or enable virtual environtment
 
