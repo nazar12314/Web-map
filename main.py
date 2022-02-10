@@ -46,7 +46,7 @@ def parse_info(data: str, year: str):
                                *items[1:-1], re.sub(r'\(.*?\)', '', items[-1]) if len(items) > 1 else ""]
                 }
                 result[i] = element_object
-                if i == 500:
+                if i == 350:
                     break
                 i += 1
     return result
