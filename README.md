@@ -30,11 +30,9 @@ python main.py "year" "latitude" "longitude"
 ```
 
 ## Example of generated map
-year: 2003
-
-latitude: 12
-
-longitude: 32
+year: 2003; 
+latitude: 12; 
+longitude: 32; 
 <img width="1440" alt="Знімок екрана 2022-02-10 о 13 43 20" src="https://user-images.githubusercontent.com/59284695/153402355-a1bb6a90-78b8-4026-8648-caf19afc81b6.png">
 
 Map has 4 layers:
