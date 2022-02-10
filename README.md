@@ -27,3 +27,7 @@ pipenv shell
 ## Usage
 ```bash
 python main.py "year" "latitude" "longitude"
+```
+
+## Example of received file
+<img width="1440" alt="Знімок екрана 2022-02-09 о 10 28 51" src="https://user-images.githubusercontent.com/59284695/153401664-c85ed36c-c1d6-4f96-82c2-d5ec9037d72f.png">
