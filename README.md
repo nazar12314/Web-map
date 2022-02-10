@@ -23,3 +23,7 @@ pip install haversine
 ```bash
 pipenv shell
 ```
+
+## Usage
+```bash
+python main.py "year" "latitude" "longitude"
